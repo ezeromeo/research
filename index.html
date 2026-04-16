@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Investigación Comparativa: Plataformas de Agentes de IA para Escalabilidad Empresarial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e1b4b',
+                        secondary: '#3730a3',
+                        accent: '#6366f1',
+                        neutral: '#64748b',
+                        'neutral-light': '#f8fafc',
+                        'neutral-dark': '#1e293b'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .prose-custom h1 {
+            @apply text-3xl font-serif font-bold text-primary mb-6;
+        }
+
+        .prose-custom h2 {
+            @apply text-2xl font-serif font-semibold text-primary mb-4 mt-8;
+        }
+
+        .prose-custom h3 {
+            @apply text-xl font-serif font-semibold text-secondary mb-3 mt-6;
+        }
+
+        .prose-custom h4 {
+            @apply text-lg font-sans font-semibold text-neutral-dark mb-2 mt-4;
+        }
+
+        .prose-custom p {
+            @apply text-neutral-dark leading-relaxed mb-4;
+        }
+
+        .prose-custom ul {
+            @apply list-disc list-inside text-neutral-dark space-y-2 mb-4;
+        }
+
+        .prose-custom ol {
+            @apply list-decimal list-inside text-neutral-dark space-y-2 mb-4;
+        }
+
+        .prose-custom li {
+            @apply ml-4;
+        }
+
+        .prose-custom a {
+            @apply text-accent hover:text-secondary underline;
+        }
+
+        .prose-custom blockquote {
+            @apply border-l-4 border-accent pl-4 italic text-neutral mb-4;
+        }
+
+        .prose-custom table {
+            @apply w-full border-collapse mb-6;
+        }
+
+        .prose-custom th {
+            @apply bg-neutral-light text-left p-3 font-semibold text-neutral-dark border-b border-gray-200;
+        }
+
+        .prose-custom td {
+            @apply p-3 text-neutral-dark border-b border-gray-200;
+        }
+
+        .prose-custom tr:hover {
+            @apply bg-neutral-light;
+        }
+
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 100%);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc-fixed h3 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .toc-fixed ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-fixed li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-fixed a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid transparent;
+        }
+
+        .toc-fixed a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left-color: #fbbf24;
+            transform: translateX(4px);
+        }
+
+        .toc-fixed a.active {
+            background: white !important;
+            color: #1e1b4b !important;
+            font-weight: 600;
+            opacity: 1 !important;
+        }
+
+        .toc-fixed a.level-2 {
+            margin-left: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .toc-fixed a.level-3 {
+            margin-left: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1e1b4b, #6366f1, #3730a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bento-card {
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .citation {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .citation:hover {
+            background: #3730a3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .toc-fixed {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body class="font-sans bg-white text-neutral-dark">
+    <!-- Table of Contents -->
+    <nav class="toc-fixed">
+        <h3>Índice de Contenidos</h3>
+        <ul>
+            <li>
+                <a href="#executive-summary" class="level-1">Resumen</a>
+            </li>
+            <li>
+                <a href="#contexto-operativo" class="level-1">1. Contexto Operativo</a>
+            </li>
+            <li>
+                <a href="#arquitectura-actual" class="level-2">1.1 Arquitectura Actual OpenClaw</a>
+            </li>
+            <li>
+                <a href="#modelo-negocio" class="level-2">1.2 Modelo de Negocio Objetivo</a>
+            </li>
+            <li>
+                <a href="#criterios-evaluacion" class="level-2">1.3 Criterios de Evaluación</a>
+            </li>
+            <li>
+                <a href="#evaluacion-plataformas" class="level-1">2. Evaluación de Plataformas</a>
+            </li>
+            <li>
+                <a href="#plataformas-multi-tenant" class="level-2">2.1 Plataformas Multi-Tenant</a>
+            </li>
+            <li>
+                <a href="#plataformas-low-code" class="level-2">2.2 Plataformas Low-Code</a>
+            </li>
+            <li>
+                <a href="#frameworks-orquestacion" class="level-2">2.3 Frameworks de Orquestación</a>
+            </li>
+            <li>
+                <a href="#plataformas-propietarias" class="level-2">2.4 Plataformas Propietarias</a>
+            </li>
+            <li>
+                <a href="#servicios-gestionados" class="level-2">2.5 Servicios Gestionados</a>
+            </li>
+            <li>
+                <a href="#comparativa-plataformas" class="level-2">2.6 Tabla Comparativa</a>
+            </li>
+            <li>
+                <a href="#analisis-modelos-llm" class="level-1">3. Análisis de Modelos LLM</a>
+            </li>
+            <li>
+                <a href="#modelos-eficiencia" class="level-2">3.1 Modelos de Alta Eficiencia</a>
+            </li>
+            <li>
+                <a href="#modelos-balance" class="level-2">3.2 Modelos de Balance Costo-Rendimiento</a>
+            </li>
+            <li>
+                <a href="#modelos-premium" class="level-2">3.3 Modelos Premium</a>
+            </li>
+            <li>
+                <a href="#estabilidad-modelos" class="level-2">3.4 Evaluación de Estabilidad</a>
+            </li>
+            <li>
+                <a href="#prevencion-loops" class="level-1">4. Prevención de Loops</a>
+            </li>
+            <li>
+                <a href="#mecanismos-nativos" class="level-2">4.1 Mecanismos Nativos</a>
+            </li>
+            <li>
+                <a href="#patrones-prompt" class="level-2">4.2 Patrones de Prompt</a>
+            </li>
+            <li>
+                <a href="#gestion-contexto" class="level-2">4.3 Gestión de Contexto</a>
+            </li>
+            <li>
+                <a href="#configuracion-gcp" class="level-2">4.4 Configuración GCP</a>
+            </li>
+            <li>
+                <a href="#viabilidad-comercial" class="level-1">5. Viabilidad Comercial</a>
+            </li>
+            <li>
+                <a href="#capacidades-multi-tenant" class="level-2">5.1 Capacidades Multi-Tenant</a>
+            </li>
+            <li>
+                <a href="#white-labeling" class="level-2">5.2 White-Labeling</a>
+            </li>
+            <li>
+                <a href="#costos-estimados" class="level-2">5.3 Costos Estimados</a>
+            </li>
+            <li>
+                <a href="#recomendaciones" class="level-1">6. Recomendaciones</a>
+            </li>
+            <li>
+                <a href="#top-combinaciones" class="level-2">6.1 Top 3 Combinaciones</a>
+            </li>
+            <li>
+                <a href="#estrategia-migracion" class="level-2">6.2 Estrategia de Migración</a>
+            </li>
+            <li>
+                <a href="#conclusiones" class="level-2">6.3 Conclusiones Finale</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section with Bento Grid -->
+        <section class="bg-gradient-to-br from-neutral-light to-white py-16 px-8">
+            <div class="max-w-7xl mx-auto">
+                <div>
+                    <!-- Left: Title and Key Metrics -->
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <h1 class="font-serif text-5xl font-bold gradient-text italic leading-tight">
+                                Investigación Comparativa:
+                                <br />
+                                Plataformas de Agentes de IA
+                                <br />
+                                para Escalabilidad Empresarial
+                            </h1>
+                            <p class="text-xl text-neutral leading-relaxed">
+                                Análisis exhaustivo de frameworks y modelos LLM para optimizar costos, estabilidad y
+                                viabilidad comercial en entornos multi-tenant.
+                            </p>
+                        </div>
+
+                        <!-- Key Metrics Grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bento-card">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-chart-line text-accent text-2xl"></i>
+                                    <div>
+                                        <div class="text-2xl font-bold text-primary">74-87%</div>
+                                        <div class="text-sm text-neutral">Reducción de costos de tokens</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-shield-alt text-accent text-2xl"></i>
+                                    <div>
+                                        <div class="text-2xl font-bold text-primary">Anti-Loop</div>
+                                        <div class="text-sm text-neutral">Mecanismos nativos</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-users text-accent text-2xl"></i>
+                                    <div>
+                                        <div class="text-2xl font-bold text-primary">Multi-Tenant</div>
+                                        <div class="text-sm text-neutral">Aislamiento empresarial</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bento-card">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-rocket text-accent text-2xl"></i>
+                                    <div>
+                                        <div class="text-2xl font-bold text-primary">SaaS Ready</div>
+                                        <div class="text-sm text-neutral">Producto comercializable</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <section id="executive-summary" class="py-16 px-8 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="prose-custom">
+                    <h2 class="text-3xl font-serif font-bold text-primary mb-8">Resumen</h2>
+
+                    <div class="bg-gradient-to-r from-accent/10 to-secondary/10 p-8 rounded-2xl mb-8">
+                        <p class="text-lg font-semibold text-primary mb-4">
+                            TL;DR: Para escalar OpenClaw como producto SaaS empresarial, la combinación óptima es
+                            <strong>OpenClawMU (o ClawHost para mayor escala) + Hermes 4 vía OpenRouter</strong>.
+                        </p>
+                        <p class="text-neutral-dark">
+                            Esta stack reduce costos de tokens en 74-87%, incorpora anti-loop nativo, y mantiene
+                            multi-tenancy con inversión mínima en desarrollo. Alternativas viables: ClawHost + Phi-4 (si
+                            se acepta dependencia Azure) o Dify Cloud + MiniMax/Qwen 3 (si se prioriza velocidad de
+                            onboarding sobre control).
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bento-card text-center">
+                            <i class="fas fa-dollar-sign text-accent text-3xl mb-4"></i>
+                            <h3 class="text-lg font-semibold text-primary mb-2">Optimización de Costos</h3>
+                            <p class="text-sm text-neutral">Reducción drástica en consumo de tokens con modelos
+                                alternativos como Hermes 4 y Phi-4.</p>
+                        </div>
+                        <div class="bento-card text-center">
+                            <i class="fas fa-lock text-accent text-3xl mb-4"></i>
+                            <h3 class="text-lg font-semibold text-primary mb-2">Estabilidad Mejorada</h3>
+                            <p class="text-sm text-neutral">Mecanismos anti-loop nativos y configuraciones de
+                                infraestructura para prevención de fallos.</p>
+                        </div>
+                        <div class="bento-card text-center">
+                            <i class="fas fa-building text-accent text-3xl mb-4"></i>
+                            <h3 class="text-lg font-semibold text-primary mb-2">Viabilidad Comercial</h3>
+                            <p class="text-sm text-neutral">Arquitecturas multi-tenant robustas y capacidades de
+                                white-labeling para producto SaaS.</p>
+                        </div>
+                    </div>
+
+                    <blockquote
+                        class="border-l-4 border-accent pl-6 italic text-lg text-neutral-dark bg-neutral-light p-6 rounded-r-lg">
+                        &#34;La migración recomendada es gradual: evaluación en staging, cambio de modelo LLM, luego
+                        optimización de infraestructura.&#34;
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Sections -->
+        <div class="max-w-6xl mx-auto px-8 py-12 space-y-16">
+
+            <!-- Section 1: Contexto Operativo -->
+            <section id="contexto-operativo" class="prose-custom">
+                <h2>1. Contexto Operativo y Requerimientos del Proyecto</h2>
+
+                <h3 id="arquitectura-actual">1.1 Arquitectura Actual OpenClaw</h3>
+
+                <div class="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-xl mb-8">
+                    <h4>Infraestructura GCP con VM Linux y Acceso SSH</h4>
+                    <p>La infraestructura actual se fundamenta en <strong>OpenClaw</strong>, un framework de agentes de
+                        IA de código abierto bajo licencia MIT, desplegado en una máquina virtual de Google Cloud
+                        Platform (GCP) con acceso mediante SSH <a href="https://www.gm7.org/archives/50917"
+                            class="citation">601</a>. Esta arquitectura híbrida combina el control total de un entorno
+                        self-hosted con la flexibilidad de los servicios cloud de Google.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-user-tie text-accent mr-2"></i>Agente José Luis</h4>
+                        <p><strong>Perfil:</strong> Agente de soporte funcional para usuarios de portal web</p>
+                        <p><strong>Capacidades:</strong> Respuesta a preguntas frecuentes, consultas Jira, acceso a
+                            documentación del proyecto <a href="https://www.gm7.org/archives/50917"
+                                class="citation">601</a>.</p>
+                    </div>
+                    <div class="bento-card">
+                        <h4><i class="fas fa-cogs text-accent mr-2"></i>Agente María Amparo</h4>
+                        <p><strong>Perfil:</strong> Agente técnico QA/dev</p>
+                        <p><strong>Capacidades:</strong> Transcripción de videos, generación de .docx, integración
+                            Google Drive y Jira <a href="https://www.gm7.org/archives/50917" class="citation">601</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 id="modelo-negocio">1.2 Modelo de Negocio Objetivo</h3>
+
+                <h4>Producto Vendible a Empresas</h4>
+                <p>El objetivo estratégico es transformar la infraestructura actual en un <strong>producto
+                        comercializable para empresas</strong>, donde cada cliente reciba uno o más agentes configurados
+                    según sus necesidades específicas <a href="https://www.gm7.org/archives/50917"
+                        class="citation">601</a>. El contexto de mercado es favorable: el <strong>52% de los ejecutivos
+                        empresariales ya tienen agentes de IA en producción</strong>, con el <strong>49% usándolos para
+                        servicio al cliente</strong>
+                    <a href="https://finance.sina.com.cn/tech/roll/2026-02-05/doc-inhktfxv3144371.shtml"
+                        class="citation">695</a>.
+                </p>
+
+                <h4>Optimización de Costos</h4>
+                <p>El consumo de tokens representa típicamente el <strong>60-80% de los costos variables</strong> en
+                    operaciones de agentes de IA <a
+                        href="https://www.ai-agentsplus.com/blog/ai-agent-cost-optimization-strategies-march-2026"
+                        class="citation">727</a>. La investigación ha identificado seis razones principales por las que
+                    OpenClaw es intensivo en tokens: reenvío del system prompt completo, razonamiento multi-ronda,
+                    selección inadecuada de modelo, falta de caching, funciones heartbeat, e interacciones de browser
+                    automation <a href="https://help.apiyi.com/en/openclaw-token-cost-optimization-guide-en.html"
+                        class="citation">656</a>.</p>
+
+                <h3 id="criterios-evaluacion">1.3 Criterios de Evaluación Prioritarios</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-coins text-accent mr-2"></i>Eficiencia de Tokens</h4>
+                        <p>Minimizar gasto sin sacrificar calidad mediante arquitecturas que optimicen el uso del
+                            contexto y gestionen proactivamente la ventana de contexto <a
+                                href="https://www.ai-agentsplus.com/blog/ai-agent-cost-optimization-strategies-march-2026"
+                                class="citation">727</a>.</p>
+                    </div>
+                    <div class="bento-card">
+                        <h4><i class="fas fa-shield-alt text-accent mr-2"></i>Estabilidad</h4>
+                        <p>Prevención de loops en ejecución autónoma para garantizar la confianza empresarial y evitar
+                            el consumo exponencial de recursos <a
+                                href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                        </p>
+                    </div>
+                    <div class="bento-card">
+                        <h4><i class="fas fa-briefcase text-accent mr-2"></i>Viabilidad Comercial</h4>
+                        <p>Facilidad de onboarding, white-labeling, gestión centralizada y modelos de pricing
+                            transparentes y predecibles <a href="https://www.vellum.ai/blog/best-openclaw-alternatives"
+                                class="citation">639</a>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Evaluación de Plataformas -->
+            <section id="evaluacion-plataformas" class="prose-custom">
+                <h2>2. Evaluación de Plataformas y Frameworks Alternativos</h2>
+
+                <h3 id="plataformas-multi-tenant">2.1 Plataformas con Soporte Nativo Multi-Tenant</h3>
+
+                <div class="space-y-8">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-code-branch text-accent mr-2"></i>OpenClawMU (FreakClaw)</h4>
+                        <p><strong>Fork comunitario</strong> con capacidades empresariales críticas. Implementa
+                            multi-tenancy con autenticación JWT, aislamiento de datos, tracking de uso por tenant y
+                            sistema de quotas <a href="https://github.com/neul-labs/openclawmu" class="citation">227</a>
+                            <a href="https://github.com/neul-labs/openclawmu" class="citation">777</a>.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg mt-4">
+                            <p><strong>Costo estimado:</strong> $15-40 por tenant/mes (configuración moderada),
+                                reduciéndose a $4-8/mes con 10 tenants.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-dharmachakra text-accent mr-2"></i>ClawHost</h4>
+                        <p><strong>Orquestación Kubernetes-native</strong> donde cada agente opera como Pod
+                            independiente. Prioriza aislamiento fuerte sobre eficiencia de recursos, con escalado
+                            automático y despliegue blue-green <a
+                                href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html" class="citation">699</a>
+                            <a href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html" class="citation">767</a>.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg mt-4">
+                            <p><strong>Costo estimado:</strong> $800-1,200/mes para 50 agentes ($16-24/agente),
+                                reduciéndose a $8-12/agente a escala.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-layer-group text-accent mr-2"></i>agentClaw</h4>
+                        <p><strong>Diseño &#34;cero intrusión&#34;</strong> que opera mediante capa de Bridge sin
+                            modificar OpenClaw. Platform Gateway con FastAPI, Bridge TypeScript, y sandboxes Docker
+                            dinámicos <a href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html"
+                                class="citation">767</a>.</p>
+                        <div class="bg-accent/10 p-4 rounded-lg mt-4">
+                            <p><strong>Costo estimado:</strong> $10-30/mes por usuario, ideal para equipos pequeños.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="plataformas-low-code">2.2 Plataformas Low-Code/No-Code</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bento-card">
+                        <h4>Flowise AI</h4>
+                        <p>Constructor visual con licencia AGPLv3. <strong>Limitaciones críticas:</strong> ausencia de
+                            multi-tenancy nativo, integración Slack dependiente de Zapier <a
+                                href="https://gist.github.com/ariel-frischer/725c6cff42d2c4665b7a74516e2a6352"
+                                class="citation">760</a>
+                            <a href="https://github.com/openclaw/openclaw/issues/17299" class="citation">765</a>.
+                        </p>
+                        <div class="bg-red-100 p-3 rounded-lg mt-2">
+                            <p class="text-red-700 text-sm"><strong>Descartado:</strong> conflicto de licencia para
+                                producto comercial.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4>Dify</h4>
+                        <p>Workspaces múltiples con <strong>restricción de licencia crítica:</strong> prohíbe uso
+                            multi-tenant como SaaS sin autorización <a
+                                href="https://github.com/langgenius/dify/issues/4685" class="citation">95</a>
+                            <a href="https://www.24-7pressrelease.com/press-release/532289/clawbot-ai-launches-online-saas-version-of-openclaw-with-built-in-ai-model-selection-for-cloud-based-agent-deployment"
+                                class="citation">458</a>.
+                        </p>
+                        <div class="bg-yellow-100 p-3 rounded-lg mt-2">
+                            <p class="text-yellow-700 text-sm"><strong>Alto riesgo legal</strong> para modelo de negocio
+                                propuesto.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4>n8n</h4>
+                        <p>Plataforma de automatización de flujos, pero <strong>no está diseñada para construcción de
+                                agentes conversacionales</strong>
+                            <a href="https://botpress.com/zh-cn/blog/low-code-ai-agent-platforms"
+                                class="citation">725</a>
+                            <a href="https://github.com/neul-labs/openclawmu" class="citation">227</a>.
+                        </p>
+                        <div class="bg-gray-100 p-3 rounded-lg mt-2">
+                            <p class="text-gray-700 text-sm">Descartado: flujos, no agentes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="frameworks-orquestacion">2.3 Frameworks de Orquestación de Agentes</h3>
+
+                <div class="space-y-6">
+                    <div class="bento-card">
+                        <h4><i class="fab fa-google text-accent mr-2"></i>Google ADK (Agent Development Kit)</h4>
+                        <p><strong>Integración nativa con Vertex AI y GCP</strong>, pero carece de multi-tenancy nativo
+                            y white-labeling. Licencia Apache 2.0 permite uso comercial <a
+                                href="https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/"
+                                class="citation">249</a>.</p>
+                        <div class="bg-yellow-100 p-4 rounded-lg mt-4">
+                            <p><strong>Brechas de producto:</strong> Dependencia crítica de Google, curva de aprendizaje
+                                pronunciada.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-project-diagram text-accent mr-2"></i>LangGraph/LangChain</h4>
+                        <p><strong>Infraestructura técnica subyacente</strong> a muchas plataformas de agentes. Máxima
+                            flexibilidad arquitectónica pero requieren construcción de plataforma completa <a
+                                href="https://sparkco.ai/blog/ai-agent-frameworks-compared-langchain-autogen-crewai-and-openclaw-in-2026"
+                                class="citation">722</a>.</p>
+                        <div class="bg-blue-100 p-4 rounded-lg mt-4">
+                            <p><strong>Consideración:</strong> Para equipos con presión de time-to-market, la
+                                &#34;flexibilidad&#34; se traduce en riesgo de proyecto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="plataformas-propietarias">2.4 Plataformas Propietarias</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-robot text-accent mr-2"></i>Hermes Agent (Nous Research)</h4>
+                        <p><strong>Mecanismo anti-loop diferenciador</strong> con token de terminación aprendido.
+                            Excelente como componente de modelo, pero carece de capacidades de gestión de agentes <a
+                                href="https://venturebeat.com/ai/nous-research-drops-hermes-4-ai-models-that-outperform-chatgpt-without-content-restrictions"
+                                class="citation">177</a>
+                            <a href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                        </p>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-headset text-accent mr-2"></i>Botpress</h4>
+                        <p>Madurez desde 2017 con control conversacional preciso, pero <strong>carece de gestión
+                                multi-tenant nativa</strong> y capacidades de white-labeling limitadas <a
+                                href="https://www.aimakers.co/blog/openclaw-alternatives-business/"
+                                class="citation">724</a>.</p>
+                    </div>
+                </div>
+
+                <h3 id="servicios-gestionados">2.5 Servicios Gestionados de Terceros</h3>
+
+                <div class="bento-card">
+                    <h4><i class="fas fa-cloud text-accent mr-2"></i>Clawbot AI, Task Splitter, Blink Claw</h4>
+                    <p><strong>Conveniencia versus control:</strong> Blink Claw ofrece precio fijo de $45/mes todo
+                        incluido, pero a costa de pérdida de control sobre infraestructura <a
+                            href="https://www.datacamp.com/blog/openclaw-alternatives" class="citation">725</a>
+                        <a href="https://blink.new/blog/clawhosters-vs-blink-claw-comparison-2026"
+                            class="citation">746</a>.
+                    </p>
+                    <div class="bg-green-100 p-4 rounded-lg mt-4">
+                        <p><strong>Recomendación:</strong> Para organizaciones con capacidad técnica, estos servicios
+                            raramente representan valor neto positivo a largo plazo.</p>
+                    </div>
+                </div>
+
+                <h3 id="comparativa-plataformas">2.6 Tabla Comparativa Consolidada</h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="p-3 text-left">Plataforma</th>
+                                <th class="p-3 text-left">Licencia</th>
+                                <th class="p-3 text-left">Multi-Tenant</th>
+                                <th class="p-3 text-left">Estabilidad Anti-Loop</th>
+                                <th class="p-3 text-left">Veredicto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-green-50">
+                                <td class="p-3 font-semibold">OpenClawMU</td>
+                                <td class="p-3">MIT (fork)</td>
+                                <td class="p-3">✅ Sí</td>
+                                <td class="p-3">⚠️ Mejorado</td>
+                                <td class="p-3"><strong>Opción más prometedora</strong></td>
+                            </tr>
+                            <tr class="bg-blue-50">
+                                <td class="p-3 font-semibold">ClawHost</td>
+                                <td class="p-3">Apache</td>
+                                <td class="p-3">✅ Sí</td>
+                                <td class="p-3">⚠️ Heredado</td>
+                                <td class="p-3"><strong>Mejor para escala enterprise</strong></td>
+                            </tr>
+                            <tr class="bg-yellow-50">
+                                <td class="p-3 font-semibold">agentClaw</td>
+                                <td class="p-3">MIT</td>
+                                <td class="p-3">⚠️ Lógico</td>
+                                <td class="p-3">⚠️ Heredado</td>
+                                <td class="p-3">Niche: equipos pequeños</td>
+                            </tr>
+                            <tr class="bg-red-50">
+                                <td class="p-3 font-semibold">Flowise AI</td>
+                                <td class="p-3">AGPLv3</td>
+                                <td class="p-3">❌ No</td>
+                                <td class="p-3">❓ No documentado</td>
+                                <td class="p-3">Descartado por licencia</td>
+                            </tr>
+                            <tr class="bg-orange-50">
+                                <td class="p-3 font-semibold">Dify</td>
+                                <td class="p-3">OS + restricción</td>
+                                <td class="p-3">⚠️ Legalmente restringido</td>
+                                <td class="p-3">❓ No documentado</td>
+                                <td class="p-3">Alto riesgo legal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 3: Análisis de Modelos LLM -->
+            <section id="analisis-modelos-llm" class="prose-custom">
+                <h2>3. Análisis Comparativo de Modelos LLM para Tareas Agénticas</h2>
+
+                <h3 id="modelos-eficiencia">3.1 Modelos de Alta Eficiencia de Costo</h3>
+
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl mb-8">
+                    <h4><i class="fas fa-trophy text-accent mr-2"></i>Hermes 4 (Nous Research) - Líder en Eficiencia
+                    </h4>
+                    <p>El candidato indiscutible con <strong>$0.13/M input y $0.40/M output</strong>, representando una
+                        reducción del <strong>74% en costos de input</strong> comparado con Gemini 3 Flash ($0.50/M) y
+                        del <strong>87% en costos de output</strong> ($3.00/M) <a
+                            href="https://github.com/neul-labs/openclawmu" class="citation">777</a>.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">131K</div>
+                            <div class="text-sm text-neutral">Tokens de contexto</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">✅</div>
+                            <div class="text-sm text-neutral">Anti-loop nativo</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600">✅</div>
+                            <div class="text-sm text-neutral">Tool use compatible</div>
+                        </div>
+                    </div>
+
+                    <p class="mt-4"><strong>Característica diferenciadora:</strong> Mecanismo anti-loop inherente con
+                        <strong>token de terminación entrenado</strong> (`第 ja4w`) que previene loops de forma proactiva
+                        <a href="https://venturebeat.com/ai/nous-research-drops-hermes-4-ai-models-that-outperform-chatgpt-without-content-restrictions"
+                            class="citation">177</a>
+                        <a href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bento-card">
+                        <h4><i class="fab fa-microsoft text-accent mr-2"></i>Phi-4 (Microsoft)</h4>
+                        <p><strong>Precio más bajo identificado:</strong> $0.065/M input y $0.14/M output <a
+                                href="https://pricepertoken.com/pricing-page/model/microsoft-phi-4"
+                                class="citation">382</a>
+                            <a href="https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/"
+                                class="citation">386</a>.
+                        </p>
+                        <div class="bg-yellow-100 p-3 rounded-lg mt-2">
+                            <p class="text-yellow-700 text-sm"><strong>Limitación:</strong> Disponibilidad restringida a
+                                Azure AI Services.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-dragon text-accent mr-2"></i>DeepSeek V3/R2</h4>
+                        <p><strong>Rango de precios amplio:</strong> V3 a $0.14/$0.28 por millón, R2 a $0.55/$2.19 por
+                            millón <a href="https://cloudprice.net/models/openrouter/minimax/minimax-m2.5"
+                                class="citation">387</a>.
+                        </p>
+                        <p class="text-sm text-neutral mt-2">Disponibilidad vía OpenRouter confirmada.</p>
+                    </div>
+                </div>
+
+                <h3 id="modelos-balance">3.2 Modelos de Balance Costo-Rendimiento</h3>
+
+                <div class="space-y-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-expand-arrows-alt text-accent mr-2"></i>MiniMax M2.5</h4>
+                        <p><strong>Contexto extendido de 197-200K tokens</strong> con función de &#34;prompt
+                            caching&#34; a $0.15/M <a
+                                href="https://cloudprice.net/models/openrouter/minimax/minimax-m2.5"
+                                class="citation">387</a>. Ideal para procesamiento de documentos extensos y
+                            transcripciones de video largas.
+                        </p>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-puzzle-piece text-accent mr-2"></i>Qwen 3</h4>
+                        <p><strong>Rango de precios más amplio:</strong> desde $0.04/M input hasta $2.40/M, con contexto
+                            de hasta 1M tokens <a href="https://cloudprice.net/models/openrouter/minimax/minimax-m2.5"
+                                class="citation">387</a>. Flexibilidad sin precedentes pero con complejidad de
+                            selección.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 id="modelos-premium">3.3 Modelos Premium</h3>
+
+                <div class="bg-yellow-50 p-6 rounded-xl">
+                    <h4><i class="fas fa-gem text-accent mr-2"></i>Gemini 3 Flash - Benchmark Actual</h4>
+                    <p><strong>Punto de referencia:</strong> $0.50/M input, $3.00/M output, con 1M tokens de contexto <a
+                            href="https://artificialanalysis.ai/models/comparisons/gemini-3-flash-reasoning-vs-hermes-4-llama-3-1-405b"
+                            class="citation">404</a>.
+                    </p>
+                    <div class="bg-white p-4 rounded-lg mt-4">
+                        <p><strong>Oportunidad de optimización:</strong> Hermes 4 ofrece ~74% de reducción en costo de
+                            input y ~87% en costo de output, con mecanismo anti-loop adicional.</p>
+                    </div>
+                </div>
+
+                <h3 id="estabilidad-modelos">3.4 Evaluación de Estabilidad Agéntica</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bento-card">
+                        <h4>Escala de Estabilidad</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center"><span class="text-green-600 mr-2">⭐⭐⭐⭐⭐</span> Excelente:
+                                Hermes 4</div>
+                            <div class="flex items-center"><span class="text-blue-600 mr-2">⭐⭐⭐⭐</span> Muy buena:
+                                Claude 2/3</div>
+                            <div class="flex items-center"><span class="text-yellow-600 mr-2">⭐⭐⭐</span> Media: Gemini,
+                                Phi-4</div>
+                            <div class="flex items-center"><span class="text-orange-600 mr-2">⭐⭐</span> Baja:
+                                DeepSeek/Qwen</div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4>Mecanismos Anti-Loop</h4>
+                        <div class="space-y-2">
+                            <div><strong>✅ Nativo:</strong> Hermes 4 (token entrenado)</div>
+                            <div><strong>⚠️ Implícito:</strong> Claude (alta calidad)</div>
+                            <div><strong>❌ Requiere gestión:</strong> Gemini, Phi-4</div>
+                            <div><strong>❓ No documentado:</strong> Otros modelos</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Prevención de Loops -->
+            <section id="prevencion-loops" class="prose-custom">
+                <h2>4. Mecanismos de Prevención de Loops y Estabilidad Operacional</h2>
+
+                <h3 id="mecanismos-nativos">4.1 Mecanismos Nativos de Plataformas</h3>
+
+                <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl mb-8">
+                    <h4><i class="fas fa-search text-accent mr-2"></i>OpenClaw: Sistema de Detección de Convergencia
+                    </h4>
+                    <p>OpenClaw implementa el <strong>sistema de detección de loops más sofisticado
+                            identificado</strong>, operando en múltiples niveles de intervención progresiva <a
+                            href="https://gitcode.csdn.net/69b569620a2f6a37c5976d28.html" class="citation">501</a>
+                        <a href="https://gitcode.csdn.net/69b569620a2f6a37c5976d28.html" class="citation">774</a>.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h5 class="font-semibold text-primary mb-2">genericRepeat</h5>
+                            <p class="text-sm">Detecta invocaciones repetitivas de herramientas con parámetros
+                                idénticos.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h5 class="font-semibold text-primary mb-2">knownPollNoProgress</h5>
+                            <p class="text-sm">Identifica polling indefinido sin cambios en resultados.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h5 class="font-semibold text-primary mb-2">pingPong</h5>
+                            <p class="text-sm">Reconoce oscilaciones entre dos estados o acciones.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card">
+                    <h4><i class="fas fa-brain text-accent mr-2"></i>Hermes 4: Prevención Proactiva</h4>
+                    <p><strong>Token de terminación `第 ja4w`</strong> entrenado para autoterminación cuando el
+                        razonamiento alcanza conclusión satisfactoria <a
+                            href="https://venturebeat.com/ai/nous-research-drops-hermes-4-ai-models-that-outperform-chatgpt-without-content-restrictions"
+                            class="citation">177</a>
+                        <a href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                    </p>
+                    <blockquote class="mt-4">
+                        La combinación de mecanismos —prevención en modelo (Hermes 4) + detección en plataforma
+                        (OpenClaw)— ofrece protección en profundidad superior.
+                    </blockquote>
+                </div>
+
+                <h3 id="patrones-prompt">4.2 Patrones de Prompt y Arquitectura Anti-Loop</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-route text-accent mr-2"></i>Patrón Hop-Flex</h4>
+                        <p><strong>Flexibilidad en saltos de razonamiento</strong>, permitiendo abandonar direcciones
+                            sin progreso y reiniciar desde perspectivas alternativas <a
+                                href="https://dev.to/alessandro_pignati/stop-the-loop-how-to-prevent-infinite-conversations-in-your-ai-agents-ekj"
+                                class="citation">194</a>
+                            <a href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                        </p>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-sitemap text-accent mr-2"></i>Patrón Hop-Split</h4>
+                        <p><strong>División de tareas complejas</strong> en sub-tareas con interfaces definidas,
+                            facilitando paralelización controlada y debugging
+                            <a href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 id="gestion-contexto">4.3 Gestión de Contexto y Memoria</h3>
+
+                <div class="space-y-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-compress text-accent mr-2"></i>Comando /compact</h4>
+                        <p><strong>Recorte inteligente de historial</strong>, generando resumen condensado que preserva
+                            información crítica mientras elimina redundancia <a
+                                href="https://www.linkedin.com/pulse/burning-through-tokens-openclaw-top-tips-power-users-save-gieling-t8dae"
+                                class="citation">477</a>
+                            <a href="https://www.updateweb.cn/index.php/zwfec/item-447.html" class="citation">504</a>
+                            <a href="https://www.jitendrazaa.com/blog/ai/clawdbot-complete-guide-open-source-ai-assistant-2026/"
+                                class="citation">505</a>.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg mt-4">
+                            <p><strong>Resultado:</strong> Resumen que ocupa 10-20% de los tokens originales,
+                                manteniendo coherencia.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bento-card">
+                            <h4><i class="fas fa-redo text-accent mr-2"></i>Comandos /reset y /new</h4>
+                            <p>Mecanismos de recuperación para reinicio controlado de conversaciones degeneradas <a
+                                    href="https://www.updateweb.cn/index.php/zwfec/item-447.html"
+                                    class="citation">504</a>
+                                <a href="https://www.jitendrazaa.com/blog/ai/clawdbot-complete-guide-open-source-ai-assistant-2026/"
+                                    class="citation">505</a>.
+                            </p>
+                        </div>
+
+                        <div class="bento-card">
+                            <h4><i class="fas fa-cut text-accent mr-2"></i>Pre-Splitting de Documentos</h4>
+                            <p>División en chunks semánticamente coherentes para evitar re-lectura de contexto extenso
+                                <a href="https://dev.to/alessandro_pignati/stop-the-loop-how-to-prevent-infinite-conversations-in-your-ai-agents-ekj"
+                                    class="citation">194</a>
+                                <a href="https://www.getmaxim.ai/articles/troubleshooting-agent-loops-patterns-alerts-safe-fallbacks-and-tool-governance-using-maxim-ai/"
+                                    class="citation">203</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="configuracion-gcp">4.4 Configuración de Infraestructura GCP</h3>
+
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl">
+                    <h4><i class="fas fa-clock text-accent mr-2"></i>Timeouts de Ejecución Recomendados</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th class="p-3 text-left">Capa</th>
+                                    <th class="p-3 text-left">Timeout</th>
+                                    <th class="p-3 text-left">Propósito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3">HTTP request (load balancer)</td>
+                                    <td class="p-3 font-semibold">60s</td>
+                                    <td class="p-3">Protección contra conexiones colgadas</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Skill execution</td>
+                                    <td class="p-3 font-semibold">30s</td>
+                                    <td class="p-3">Limitar herramientas que no responden</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">LLM API call</td>
+                                    <td class="p-3 font-semibold">45s</td>
+                                    <td class="p-3">Acotar latencia de modelos externos</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Total agent turn</td>
+                                    <td class="p-3 font-semibold">120s</td>
+                                    <td class="p-3">Tiempo máximo de respuesta al usuario</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Session lifetime</td>
+                                    <td class="p-3 font-semibold">4h</td>
+                                    <td class="p-3">Forzar refresco de contexto periódico</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-4 text-sm text-neutral">Para tareas de larga duración como transcripción de video,
+                        implementar patrón de descomposición con operación asíncrona y polling con backoff exponencial
+                        <a href="https://www.jitendrazaa.com/blog/ai/clawdbot-complete-guide-open-source-ai-assistant-2026/"
+                            class="citation">505</a>.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-eye text-accent mr-2"></i>Watchdogs y Health Checks</h4>
+                        <p>Monitoreo proactivo de métricas: frecuencia de LLM calls, patrones de tool usage, volumen de
+                            tokens <a
+                                href="https://www.jitendrazaa.com/blog/ai/clawdbot-complete-guide-open-source-ai-assistant-2026/"
+                                class="citation">505</a>.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-bolt text-accent mr-2"></i>Circuit Breakers</h4>
+                        <p>Prevención de cascadas de fallos cuando múltiples agentes experimentan loops simultáneamente
+                            <a href="https://sparkco.ai/blog/prevent-ai-agent-loops-enhance-timeout-handling"
+                                class="citation">200</a>
+                            <a href="https://www.jitendrazaa.com/blog/ai/clawdbot-complete-guide-open-source-ai-assistant-2026/"
+                                class="citation">505</a>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Viabilidad Comercial -->
+            <section id="viabilidad-comercial" class="prose-custom">
+                <h2>5. Viabilidad Comercial y Modelos de Costo</h2>
+
+                <h3 id="capacidades-multi-tenant">5.1 Capacidades Multi-Tenant por Plataforma</h3>
+
+                <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-xl mb-8">
+                    <h4>Comparativa de Arquitecturas Multi-Tenant</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th class="p-3 text-left">Dimensión</th>
+                                    <th class="p-3 text-left">OpenClawMU</th>
+                                    <th class="p-3 text-left">ClawHost</th>
+                                    <th class="p-3 text-left">agentClaw</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 font-semibold">Arquitectura</td>
+                                    <td class="p-3">Instancia compartida, namespaces lógicos</td>
+                                    <td class="p-3">Pod independiente por robot</td>
+                                    <td class="p-3">Instancia compartida, Agent ID</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold">Aislamiento</td>
+                                    <td class="p-3">Docker container + esquemas PostgreSQL</td>
+                                    <td class="p-3">K8s Pod con NetworkPolicy + PVC</td>
+                                    <td class="p-3">Docker container + directorio workspace</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold">Escala objetivo</td>
+                                    <td class="p-3">10-100 tenants</td>
+                                    <td class="p-3">100-10,000+ agents</td>
+                                    <td class="p-3">5-20 usuarios</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold">Costo por tenant</td>
+                                    <td class="p-3">$4-15/mes (amortizado)</td>
+                                    <td class="p-3">$8-24/mes (amortizado)</td>
+                                    <td class="p-3">$10-30/mes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-4 text-sm text-neutral">OpenClawMU y ClawHost ofrecen las capacidades más completas
+                        para multi-tenancy empresarial <a href="https://github.com/neul-labs/openclawmu"
+                            class="citation">227</a>
+                        <a href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html" class="citation">699</a>
+                        <a href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html" class="citation">767</a>.
+                    </p>
+                </div>
+
+                <h3 id="white-labeling">5.2 Facilidad de White-Labeling y Onboarding</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-paint-brush text-accent mr-2"></i>OpenClaw</h4>
+                        <p>Sin branding nativo, requiere desarrollo frontend custom por cliente <a
+                                href="https://www.vellum.ai/blog/best-openclaw-alternatives" class="citation">639</a>.
+                        </p>
+                        <div class="bg-blue-100 p-3 rounded-lg mt-2">
+                            <p class="text-blue-700 text-sm"><strong>OpenClawMU:</strong> Panel de administración web
+                                customizable parcialmente.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-palette text-accent mr-2"></i>Dify Cloud</h4>
+                        <p><strong>Personalización de UI</strong> disponible: colores, logo, dominio <a
+                                href="https://botpress.com/zh-cn/blog/low-code-ai-agent-platforms"
+                                class="citation">676</a>.</p>
+                        <div class="bg-yellow-100 p-3 rounded-lg mt-2">
+                            <p class="text-yellow-700 text-sm"><strong>Restricción:</strong> Disponible como servicio
+                                gestionado, no self-hosted.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-handshake text-accent mr-2"></i>Knolli</h4>
+                        <p><strong>Co-branding enterprise incorporado</strong>, reconociendo explícitamente modelo de
+                            revendedor <a href="https://www.vellum.ai/blog/best-openclaw-alternatives"
+                                class="citation">639</a>.</p>
+                        <div class="bg-gray-100 p-3 rounded-lg mt-2">
+                            <p class="text-gray-700 text-sm">Rigidez operativa para workflows predefinidos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="costos-estimados">5.3 Costos Estimados por Cliente/Mes</h3>
+
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl">
+                    <h4>Escenarios de Uso y Modelos de Precio</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-primary mb-3">Uso Moderado (100-500 mensajes/día)</h5>
+                            <ul class="space-y-2">
+                                <li><strong>OpenClawMU + Hermes 4:</strong> $12-25/mes</li>
+                                <li><strong>ClawHost + Phi-4:</strong> $18-35/mes</li>
+                                <li><strong>Dify Cloud + MiniMax:</strong> $25-45/mes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-primary mb-3">Uso Intensivo (1000-3000 mensajes/día)</h5>
+                            <ul class="space-y-2">
+                                <li><strong>OpenClawMU + Hermes 4:</strong> $35-80/mes</li>
+                                <li><strong>ClawHost + Phi-4:</strong> $45-120/mes</li>
+                                <li><strong>Dify Cloud + MiniMax:</strong> $60-150/mes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-sm text-neutral">Costos incluyen infraestructura GCP + tokens LLM, asumiendo
+                        optimización de contexto y caching activo.</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Recomendaciones -->
+            <section id="recomendaciones" class="prose-custom">
+                <h2>6. Recomendaciones y Estrategia de Implementación</h2>
+
+                <h3 id="top-combinaciones">6.1 Top 3 Combinaciones Recomendadas</h3>
+
+                <div class="space-y-8">
+                    <div
+                        class="bg-gradient-to-r from-green-100 to-emerald-100 p-8 rounded-2xl border-l-4 border-green-500">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-crown text-green-600 text-3xl mr-4"></i>
+                            <h4 class="text-2xl font-bold text-green-800">Opción #1: OpenClawMU + Hermes 4 (Recomendada)
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-green-700 mb-2">Ventajas Clave</h5>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 74-87% reducción de costos de tokens</li>
+                                    <li>• Anti-loop nativo + detección OpenClaw</li>
+                                    <li>• Multi-tenancy robusto</li>
+                                    <li>• Mantenimiento de skills existentes</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-green-700 mb-2">Costo Estimado</h5>
+                                <p class="text-sm">$12-80/mes por cliente</p>
+                                <p class="text-sm">(Moderado a Intensivo)</p>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-green-700 mb-2">Ideal Para</h5>
+                                <p class="text-sm">Transición controlada con mínima inversión en desarrollo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-blue-100 to-cyan-100 p-8 rounded-2xl border-l-4 border-blue-500">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-rocket text-blue-600 text-3xl mr-4"></i>
+                            <h4 class="text-2xl font-bold text-blue-800">Opción #2: ClawHost + Phi-4</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-blue-700 mb-2">Ventajas Clave</h5>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Eficiencia de costo extrema (Phi-4)</li>
+                                    <li>• Aislamiento fuerte K8s</li>
+                                    <li>• Escalabilidad a gran escala</li>
+                                    <li>• Recuperación de fallos robusta</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-blue-700 mb-2">Costo Estimado</h5>
+                                <p class="text-sm">$18-120/mes por cliente</p>
+                                <p class="text-sm">(Dependencia Azure)</p>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-blue-700 mb-2">Ideal Para</h5>
+                                <p class="text-sm">Escenarios de compliance estricto y alta escala (&gt;100 agentes)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-2xl border-l-4 border-purple-500">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bolt text-purple-600 text-3xl mr-4"></i>
+                            <h4 class="text-2xl font-bold text-purple-800">Opción #3: Dify Cloud + MiniMax/Qwen 3</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-purple-700 mb-2">Ventajas Clave</h5>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Velocidad de onboarding máxima</li>
+                                    <li>• Personalización de UI nativa</li>
+                                    <li>• Contexto masivo (200K-1M tokens)</li>
+                                    <li>• Mantenimiento operacional mínimo</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-purple-700 mb-2">Costo Estimado</h5>
+                                <p class="text-sm">$25-150/mes por cliente</p>
+                                <p class="text-sm">(Vendor lock-in)</p>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-purple-700 mb-2">Ideal Para</h5>
+                                <p class="text-sm">Validación rápida de mercado y prototipos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="estrategia-migracion">6.2 Estrategia de Migración Recomendada</h3>
+
+                <div class="bg-gradient-to-r from-primary/5 to-secondary/5 p-8 rounded-2xl">
+                    <h4>Fase 1: Evaluación en Entorno Staging (1-2 semanas)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        <div>
+                            <h5 class="font-semibold text-primary mb-2">Tareas</h5>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Desplegar OpenClawMU en VM de staging</li>
+                                <li>• Configurar pipeline CI/CD básico</li>
+                                <li>• Migrar José Luis y María Amparo</li>
+                                <li>• Ejecutar pruebas de estabilidad y costo</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-primary mb-2">Métricas Clave</h5>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Reducción de costos de tokens vs. baseline</li>
+                                <li>• Tasa de loops detectados/prevenidos</li>
+                                <li>• Latencia de respuesta</li>
+                                <li>• Uso de recursos de VM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 border-t border-gray-200 pt-6">
+                        <h4>Fase 2: Cambio de Modelo LLM (2-3 semanas)</h4>
+                        <div class="bg-white p-4 rounded-lg mt-4">
+                            <p><strong>Proceso gradual:</strong> Iniciar con Hermes 4 70B para José Luis (soporte
+                                funcional), manteniendo Gemini para María Amparo (QA/dev). Validar estabilidad y
+                                comparar costos en producción real antes de migración completa.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 border-t border-gray-200 pt-6">
+                        <h4>Fase 3: Optimización de Infraestructura (4-6 semanas)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-primary mb-2">Opción A: OpenClawMU</h5>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• Configurar autenticación multi-tenant</li>
+                                    <li>• Implementar sistema de quotas</li>
+                                    <li>• Desarrollar portal de onboarding</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-primary mb-2">Opción B: ClawHost</h5>
+                                <ul class="space-y-1 text-sm">
+                                    <li>• Configurar cluster GKE</li>
+                                    <li>• Implementar CI/CD con Helm</li>
+                                    <li>• Configurar monitoreo Prometheus/Grafana</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="conclusiones">6.3 Conclusiones Finales</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bento-card">
+                        <h4><i class="fas fa-chart-line text-accent mr-2"></i>Impacto Económico</h4>
+                        <p>La transición a Hermes 4 puede generar <strong>ahorro anual de $15,000-25,000</strong> para
+                            un despliegue con 20-30 clientes activos, mientras que el mecanismo anti-loop puede
+                            <strong>reducir incidencias operativas en 80%</strong>.
+                        </p>
+                    </div>
+
+                    <div class="bento-card">
+                        <h4><i class="fas fa-shield-alt text-accent mr-2"></i>Riesgos y Mitigaciones</h4>
+                        <p>El principal riesgo es la <strong>dependencia de forks comunitarios</strong> (OpenClawMU).
+                            Mitigación: mantener alineación con upstream y desarrollar capacidad interna para contribuir
+                            o crear fork propio si fuera necesario.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-2xl mt-8">
+                    <h4>Recomendación Final</h4>
+                    <p class="text-lg mb-4">Para escalar OpenClaw como producto SaaS empresarial, la combinación óptima
+                        es <strong>OpenClawMU (o ClawHost para mayor escala) + Hermes 4 vía OpenRouter</strong>.</p>
+                    <p>Esta stack representa el <strong>equilibrio ideal</strong> entre optimización de costos,
+                        estabilidad operacional y viabilidad comercial, permitiendo la transformación de la
+                        infraestructura actual en un producto escalable y competitivo en el mercado.</p>
+                </div>
+            </section>
+
+            <!-- Footer with Sources -->
+            <footer class="bg-neutral-light py-12 px-8 mt-16">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-xl font-serif font-semibold text-primary mb-6">Referencias y Fuentes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-2">Plataformas y Frameworks</h4>
+                            <ul class="space-y-1">
+                                <li><a href="https://github.com/neul-labs/openclawmu" class="citation">OpenClawMU GitHub
+                                        Repository</a>
+                                </li>
+                                <li><a href="https://gitcode.csdn.net/69c9c94454b52172bc656771.html"
+                                        class="citation">ClawHost Documentation</a>
+                                </li>
+                                <li><a href="https://www.vellum.ai/blog/best-openclaw-alternatives"
+                                        class="citation">Vellum AI - OpenClaw Alternatives</a>
+                                </li>
+                                <li><a href="https://sparkco.ai/blog/ai-agent-frameworks-compared-langchain-autogen-crewai-and-openclaw-in-2026"
+                                        class="citation">AI Agent Frameworks Comparison 2026</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-2">Modelos LLM y Costos</h4>
+                            <ul class="space-y-1">
+                                <li><a href="https://langdb.ai/app/models/compare/gemini--gemini-3-flash-preview/vs/openrouter--hermes-4-405b"
+                                        class="citation">LangDB AI Model Comparison</a>
+                                </li>
+                                <li><a href="https://www.ai-agentsplus.com/blog/ai-agent-cost-optimization-strategies-march-2026"
+                                        class="citation">AI Agent Cost Optimization Strategies</a>
+                                </li>
+                                <li><a href="https://pricepertoken.com/pricing-page/model/microsoft-phi-4"
+                                        class="citation">Price Per Token - Model Pricing</a>
+                                </li>
+                                <li><a href="https://help.apiyi.com/en/openclaw-token-cost-optimization-guide-en.html"
+                                        class="citation">OpenClaw Token Cost Optimization Guide</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in TOC
+        function highlightCurrentSection() {
+            const sections = document.querySelectorAll('section[id], div[id]');
+            const tocLinks = document.querySelectorAll('.toc-fixed a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightCurrentSection);
+        window.addEventListener('load', highlightCurrentSection);
+    </script>
+
+
+</body>
+
+</html>
